@@ -157,6 +157,20 @@ const GlobalStyle = createGlobalStyle`
         justify-content: center;
         align-items: center;
     }
+
+    .outletContainer { 
+        width: 92%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .wordContainer {
+        width: 100%;
+        border: none;
+        border-radius: 0.4vw;
+        background-color: ${colors.white};
+    }
 `;
 
 export default GlobalStyle;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import navBarData from "../../utils/NavBar/navBarData";
-import ItemNavBar from "../item-navBar";
+import ItemNavBar from "./item-navBar";
 
 const ListContainer = styled.div`
     width: 100%;
@@ -10,7 +10,7 @@ const ListContainer = styled.div`
 
 const ListNavBar = () => {
     const [items, setItems] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(1);
+    const [selectedItem, setSelectedItem] = useState(0);
 
     useEffect(() => {
         setItems(navBarData);

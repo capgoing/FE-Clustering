@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/root-layout";
 import GlobalStyle from "./styles/globalStyles";
 import HomePage from "./pages/Home/Home";
+import WordPage from "./pages/Word/Word";
 import NotFoundPage from "./pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "word",
+        element: <WordPage />
       },
     ],
   },

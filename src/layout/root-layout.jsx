@@ -12,11 +12,21 @@ const RootContainer = styled.div`
     display: flex;
 `
 
+const OutletContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 const RootLayout = () => {
     return (
         <RootContainer>
             <NavBar />
-            <Outlet />
+            <OutletContainer>
+                <Outlet />
+            </OutletContainer>
         </RootContainer>
     );
 };
