@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
-import Home from "../../assets/images/home.png";
+import ListNavBar from "./list-navBar";
+import Home from "../../assets/images/navBar/home.png";
 
 const NavBarContainer = styled.div`
     width: 20%;
@@ -8,9 +9,10 @@ const NavBarContainer = styled.div`
     background-color: ${colors.white};
     border: none;
     border-radius: 1.5vw;
-    padding: 1.25vw 0;
+    padding: 2vw 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `
 
 const NavContainer = styled.div`
@@ -25,14 +27,21 @@ const InnerContainer = styled.div`
 `
 
 const ImgLogo = styled.img`
-    width: 2.15vw;
-    height: 2.15vw;
+    width: 4.3rem;
+    height: 4.3rem;
 `
 
 const HomeP = styled.p`
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: ${colors.mainColor};
+    font-size: ${({ fontSize }) => fontSize || "1.7rem"};
+    font-weight: ${({ weight }) => weight || "600"};
+    color: ${({ color }) => color || colors.mainColor};
+`;
+
+const Bar = styled.div`
+    width: 100%;
+    height: 0.1vw;
+    background-color: ${colors.barColor};
+    margin: 2vw 0;
 `
 
 
@@ -45,6 +54,14 @@ const NavBar = () => {
                     <HomeP>홈</HomeP>
                 </InnerContainer>
             </NavContainer>
+
+            <Bar />
+            
+            <NavContainer>
+                <HomeP fontSize="1.5rem" color={colors.textColor} weight="500">포도품종</HomeP>
+            </NavContainer>
+
+            <ListNavBar />
         </NavBarContainer>
     )
 }
