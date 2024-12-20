@@ -4,7 +4,7 @@ import colors from './colors';
 const GlobalStyle = createGlobalStyle`
     :root {
     --vh: 100%;
-    --font-family: 'Pretendard-Regular';
+    --font-family: "Noto Sans KR";
     }
     
 
@@ -50,8 +50,6 @@ const GlobalStyle = createGlobalStyle`
         background-repeat: repeat;
         background-color: ${colors.backgroundColor};
         color: ${colors.black};
-        display: flex;
-        justify-content: center;
     }
     menu, ol, ul {
         list-style: none;
@@ -150,6 +148,14 @@ const GlobalStyle = createGlobalStyle`
     .scroll {
         -ms-overflow-style: none; /* 인터넷 익스플로러 */
         scrollbar-width: none; /* 파이어폭스 */
+    }
+
+    .pageContainer {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
