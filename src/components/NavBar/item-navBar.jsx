@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
+import  { useNavigate } from "react-router-dom";
 
 const ItemContainer = styled.div`
     width: 100%;
@@ -30,12 +31,19 @@ const ItemP = styled.p`
 `
 
 const ItemNavBar = ({ id, name, image1, image2, isActive, onClick }) => {
+    const navigate = useNavigate();
+
     const handleClick = () => {
         onClick(id);
     };
 
+    const handlePathClick = () => {
+        navigate(`/${id}`);
+    }
+
+
     return (
-        <ItemContainer $isActive={isActive}>
+        <ItemContainer $isActive={isActive} onClick={handlePathClick}>
             <InnerContainer onClick={handleClick}>
                 <ImgLogo src={isActive ? image2 : image1} alt={name} />
                 <ItemP $isActive={isActive}>{name}</ItemP>

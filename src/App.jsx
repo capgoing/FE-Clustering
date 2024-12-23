@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "word",
+        path: ":id",
         element: <WordPage />
       },
     ],

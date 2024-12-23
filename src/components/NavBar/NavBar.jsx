@@ -2,6 +2,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 import ListNavBar from "./list-navBar";
 import Home from "../../assets/images/navBar/home.png";
+import { useNavigate } from "react-router-dom";
 
 const NavBarContainer = styled.div`
     width: 20%;
@@ -46,10 +47,16 @@ const Bar = styled.div`
 
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
+    const handlePathClick = () => {
+        navigate("/");
+    }
+
     return (
         <NavBarContainer>
             <NavContainer>
-                <InnerContainer>
+                <InnerContainer onClick={handlePathClick}>
                     <ImgLogo src={Home} alt="homeLogo" />
                     <HomeP>홈</HomeP>
                 </InnerContainer>
