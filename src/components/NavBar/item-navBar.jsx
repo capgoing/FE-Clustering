@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
-import  { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ItemContainer = styled.div`
     width: 100%;
@@ -9,29 +9,35 @@ const ItemContainer = styled.div`
     margin: 1vw 0;
     cursor: pointer;
     border-right: ${({ $isActive }) => ($isActive ? `0.15vw solid ${colors.mainColor}` : "none")};
-`
+`;
 
 const InnerContainer = styled.div`
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-`
+    gap: 1rem;
+`;
 
 const ImgLogo = styled.img`
     width: 2.6rem;
     height: 2.6rem;
-`
+`;
 
 const ItemP = styled.p`
-    width: 80%;
+    width: 100%;
     font-size: 1.4rem;
     font-weight: 600;
     color: ${({ $isActive }) => ($isActive ? colors.mainColor : colors.textColor)};
-`
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
 
-const ItemNavBar = ({ id, name, image1, image2, isActive, onClick }) => {
+const ItemNavBar = ({ id, name, image1, image2, onClick }) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isActive = location.pathname === `/${id}`;
 
     const handleClick = () => {
         onClick(id);
@@ -39,8 +45,7 @@ const ItemNavBar = ({ id, name, image1, image2, isActive, onClick }) => {
 
     const handlePathClick = () => {
         navigate(`/${id}`);
-    }
-
+    };
 
     return (
         <ItemContainer $isActive={isActive} onClick={handlePathClick}>
@@ -49,7 +54,7 @@ const ItemNavBar = ({ id, name, image1, image2, isActive, onClick }) => {
                 <ItemP $isActive={isActive}>{name}</ItemP>
             </InnerContainer>
         </ItemContainer>
-    )
-}
+    );
+};
 
 export default ItemNavBar;
