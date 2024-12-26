@@ -19,11 +19,12 @@ const TextContainer = styled.div`
 const ItemP = styled.p`
     font-size: 1.4rem;
     font-weight: 500;
-    color: ${colors.textColor};
+    color: ${colors.black};
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
 `
 
 const MainImg = styled.img`
@@ -36,16 +37,20 @@ const MenuContainer = styled.div`
     cursor: pointer;
 `
 
-const ItemCluster = ({ title }) => {
+const ItemCluster = ({ id, title, onItemClick }) => {
+    const handleClick = () => {
+        onItemClick(id);
+    };
+
     return (
         <ItemContainer>
-            <TextContainer>
+            <TextContainer onClick={handleClick}>
                 <ItemP>{title}</ItemP>
                 <MainImg src={Main} alt="main" />
             </TextContainer>
 
             <MenuContainer>
-                <MainImg src={Menu} alt="menu" />
+                <MainImg src={Menu} alt="menu"/>
             </MenuContainer>
         </ItemContainer>
     )

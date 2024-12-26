@@ -8,7 +8,7 @@ const ListContainer = styled.div`
     overflow-y: auto;
 `;
 
-const ListCluster = ({ data }) => {
+const ListCluster = ({ data, onItemClick }) => {
     const validData = Array.isArray(data) ? data : data ? [data] : [];
     console.log(validData);
 
@@ -17,8 +17,10 @@ const ListCluster = ({ data }) => {
             {validData.length > 0 && 
                 validData.map((item, index) => (
                     <ItemCluster 
-                        key={index} 
-                        title={item?.title || 'No Title'}  // title이 없으면 'No Title' 출력
+                        key={index}
+                        id={item.id}
+                        title={item?.title || ''}
+                        onItemClick={onItemClick}
                     />
                 ))
             }

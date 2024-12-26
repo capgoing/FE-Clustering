@@ -29,7 +29,7 @@ const MainImg = styled.img`
     height: 2.6rem;
 `
 
-const Cluster = ({ selectedId }) => {
+const Cluster = ({ selectedId, onItemSelect }) => {
     const [users, setUsers] = useState(null);
     const { data, loading, error } = useFetch(`/posts/${selectedId}`);
 
@@ -43,6 +43,10 @@ const Cluster = ({ selectedId }) => {
         }
     }, [data]);
 
+    const handleItemClick = (id) => {
+        onItemSelect(id);
+    };
+
     return (
         <div className="wordContainer" style={{height: "50%", padding: "1.7rem 2rem", display: "flex", flexDirection: "column"}}>
             <TopPContainer>
@@ -54,7 +58,7 @@ const Cluster = ({ selectedId }) => {
             </TopPContainer>
 
             <ClusterP>구성어휘</ClusterP>
-            <ListCluster data={users}/>
+            <ListCluster data={users} onItemClick={handleItemClick} />
         </div>
     )
 }

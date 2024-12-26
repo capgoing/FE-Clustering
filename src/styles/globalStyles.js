@@ -151,7 +151,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .pageContainer {
-        width: 100%;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -159,7 +158,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .outletContainer { 
-        width: 92%;
+        width: 90%;
         height: 90%;
         display: flex;
         justify-content: space-between;

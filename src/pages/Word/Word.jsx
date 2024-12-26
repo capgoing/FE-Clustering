@@ -18,6 +18,11 @@ const WordContainer = styled.div`
 const Word = () => {
     const { id } = useParams();
     const [selectedId, setSelectedId] = useState(null);
+    const [selectedItemId, setSelectedItemId] = useState(null);
+
+    const handleClusterItemClick = (id) => {
+        setSelectedItemId(id);
+    };
 
     const handleItemClick = (id) => {
         setSelectedId(id);
@@ -25,20 +30,25 @@ const Word = () => {
     };
 
     useEffect(() => {
+        setSelectedItemId(null);
+    }, [selectedId]);
+
+    useEffect(() => {
         setSelectedId(null);
+        setSelectedItemId(null);
     }, [id]); 
 
     return (
         <div className="outletContainer">
             <WordContainer>
                 <Group selectedId={selectedId} onItemClick={handleItemClick} />
-                <Cluster selectedId={selectedId} />
+                <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} />
                 <Add />
             </WordContainer>
 
             <WordContainer style={{width: "66%"}}>
                 <Result />
-                <Text />
+                <Text selectedItemId={selectedItemId} />
             </WordContainer>
         </div>
     )
