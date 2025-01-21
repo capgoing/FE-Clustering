@@ -26,7 +26,7 @@ const Word = () => {
 
     const handleItemClick = (id) => {
         setSelectedId(id);
-        // console.log("선택된 항목: ", id);
+        console.log("선택된 항목: ", id);
     };
 
     useEffect(() => {
