@@ -19,6 +19,8 @@ const Word = () => {
     const { id } = useParams();
     const [selectedId, setSelectedId] = useState(null);
     const [selectedItemId, setSelectedItemId] = useState(null);
+    const [clickAddBtn, setClickAddBtn] = useState(false); // 새 어휘추가 버튼 클릭 상태 저장
+    const [isFocus, setIsFocus] = useState(false);
 
     const handleClusterItemClick = (id) => {
         setSelectedItemId(id);
@@ -38,12 +40,20 @@ const Word = () => {
         setSelectedItemId(null);
     }, [id]); 
 
+    useEffect(() => {
+        console.log("새 어휘추가버튼 클릭");
+    },[clickAddBtn]);
+
+    useEffect(() => {
+        console.log("포커싱 " + isFocus);
+    },[isFocus]);
+
     return (
         <div className="outletContainer">
             <WordContainer>
                 <Group selectedId={selectedId} onItemClick={handleItemClick} />
-                <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} />
-                <Add />
+                <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} clickAddBtn={clickAddBtn} setIsFocus={setIsFocus} isFocus={isFocus}/>
+                <Add clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn} isFocus={isFocus}/>
             </WordContainer>
 
             <WordContainer style={{width: "66%"}}>
