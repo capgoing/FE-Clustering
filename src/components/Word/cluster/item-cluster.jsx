@@ -4,13 +4,13 @@ import colors from "../../../styles/colors";
 import Main from "../../../assets/images/cluster/main.png";
 import Menu from "../../../assets/images/cluster/menu.png";
 import EditModal from "./editModal";
-import ReactDOM from "react-dom";
 
 const ItemContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 `
 
 const TextContainer = styled.div`
@@ -90,10 +90,10 @@ const ItemCluster = ({ id, title, onItemClick }) => {
                 <MainImg src={Menu} alt="menu"/>
             </MenuContainer>
             {/* {isModalOpen && <EditModal position={modalPosition} />} */}
-            {isModalOpen && ReactDOM.createPortal(
-    <EditModal position={modalPosition} />,
-    document.body
-)}
+            
+            {isModalOpen &&
+                <EditModal position={modalPosition} />
+            }
         </ItemContainer>
     )
 }

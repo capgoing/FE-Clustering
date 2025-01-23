@@ -8,12 +8,14 @@ const EditModalContainer = styled.div`
     width: 9rem;
     height: 6rem;
     background-color: ${colors.mainColor};
-    // position: absolute;
-    position: fixed;  // 부모가 아니라 화면 전체 기준으로 위치 설정
+    position: absolute;
+    right: 0;
+    top: 1.5vw;
+
 
     padding: 0.7rem;
-    top: ${(props) => (props.position ? `${props.position.top}px` : "0px")}; // px 추가
-    left: ${(props) => (props.position ? `${props.position.left}px` : "0px")}; // px 추가
+    // top: ${(props) => (props.position ? `${props.position.top}px` : "0px")}; // px 추가
+    // left: ${(props) => (props.position ? `${props.position.left}px` : "0px")}; // px 추가
     z-index: 1000;
     display: flex;
     flex-direction: column;
