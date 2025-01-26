@@ -50,10 +50,16 @@ letter-spacing: -0.3px;
 
 const DeleteSpan = styled.span`
 color: #FD2D69;
-font-size: 1.4rem;
+font-size: 1.5rem;
 font-style: normal;
 line-height: 18px; /* 150% */
 letter-spacing: -0.3px;
+
+`;
+
+const EditItemImg = styled.img`
+width: 1.5rem;
+height: 1.7rem;
 `;
 
 const EditModal = ({ position }) => {
@@ -63,11 +69,11 @@ const EditModal = ({ position }) => {
         <EditModalContainer>
             <EditItemContainer position={position}>
                 <EditItemBox>
-                    <img src={MODIFY} alt="modify"/>
+                    <EditItemImg src={MODIFY} alt="modify"/>
                     <ModifySpan>수정하기</ModifySpan>
                 </EditItemBox>
                 <EditItemBox>
-                    <img src={DELETE} alt="delete" />
+                    <EditItemImg src={DELETE} alt="delete" />
                     <DeleteSpan>삭제하기</DeleteSpan>
                 </EditItemBox>
             </EditItemContainer>
