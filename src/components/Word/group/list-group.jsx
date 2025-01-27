@@ -10,7 +10,7 @@ const ListContainer = styled.div`
 `;
 
 const ListP = styled.p`
-    font-size: 1.4rem;
+    font-size: 0.7vw;
     font-weight: 600;
     color: ${colors.black};
 `

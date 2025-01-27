@@ -41,11 +41,11 @@ const Word = () => {
     }, [id]); 
 
     useEffect(() => {
-        console.log("새 어휘추가버튼 클릭");
+        // console.log("새 어휘추가버튼 클릭");
     },[clickAddBtn]);
 
     useEffect(() => {
-        console.log("포커싱 " + isFocus);
+        // console.log("포커싱 " + isFocus);
     },[isFocus]);
 
     return (

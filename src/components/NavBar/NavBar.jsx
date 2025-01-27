@@ -28,8 +28,8 @@ const InnerContainer = styled.div`
 `
 
 const ImgLogo = styled.img`
-    width: 4.3rem;
-    height: 4.3rem;
+    width: 2.15vw;
+    height: 2.15vw;
 `
 
 const HomeP = styled.p`
@@ -65,7 +65,7 @@ const NavBar = () => {
             <Bar />
             
             <NavContainer>
-                <HomeP fontSize="1.5rem" color={colors.textColor} weight="500">포도품종</HomeP>
+                <HomeP fontSize="1.5rem" color={colors.textColor} weight="500">어휘</HomeP>
             </NavContainer>
 
             <ListNavBar />

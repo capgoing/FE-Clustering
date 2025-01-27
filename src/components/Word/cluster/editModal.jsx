@@ -1,84 +1,69 @@
 import styled from "styled-components";
 import colors from "../../../styles/colors";
-
 import MODIFY from '../../../assets/images/cluster/modify.png';
 import DELETE from '../../../assets/images/cluster/delete.png';
 
 const EditModalContainer = styled.div`
-    width: 9rem;
-    height: 6rem;
+    width: 4.5vw;
+    height: 3vw;
     background-color: ${colors.mainColor};
     position: absolute;
     right: 0;
-    top: 1.5vw;
-
-
-    padding: 0.7rem;
-    // top: ${(props) => (props.position ? `${props.position.top}px` : "0px")}; // px 추가
-    // left: ${(props) => (props.position ? `${props.position.left}px` : "0px")}; // px 추가
+    top: 2vw;
     z-index: 1000;
     display: flex;
-    flex-direction: column;
-
-    border-radius: 3.75px;
-    border: 0.75px solid var(--text2, #BBB);
-    background: #FFF;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.1875vw;
+    border: 0.0375vw solid ${colors.textColor};
+    background: ${colors.white};
 `;
-
 
 const EditItemContainer = styled.div`
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.45vw;
 `;
 
 const EditItemBox = styled.div`
-    display:flex;
-    flex-direction: row;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.7rem;
+    cursor: pointer;
+    gap: 0.45vw;
 `;
 
-const ModifySpan = styled.span`
-color: ${colors.mainColor};
-font-size: 1.4rem;
-font-style: normal;
-letter-spacing: -0.3px;
+const ModifyP = styled.p`
+    color: ${colors.mainColor};
+    font-size: 0.6vw;
 `;
 
-const DeleteSpan = styled.span`
-color: #FD2D69;
-font-size: 1.5rem;
-font-style: normal;
-line-height: 18px; /* 150% */
-letter-spacing: -0.3px;
-
+const DeleteP = styled.p`
+    color: ${colors.textColor2};
+    font-size: 0.6vw;
 `;
 
 const EditItemImg = styled.img`
-width: 1.5rem;
-height: 1.7rem;
+    width: 0.675vw;
+    height: auto;
 `;
 
-const EditModal = ({ position }) => {
-    console.log("EditModal position:", position); // 위치 값이 제대로 전달되는지 확인
-
+const EditModal = ({ onModify }) => {
     return (
         <EditModalContainer>
-            <EditItemContainer position={position}>
-                <EditItemBox>
+            <EditItemContainer>
+                <EditItemBox onClick={onModify}>
                     <EditItemImg src={MODIFY} alt="modify"/>
-                    <ModifySpan>수정하기</ModifySpan>
+                    <ModifyP>수정하기</ModifyP>
                 </EditItemBox>
                 <EditItemBox>
                     <EditItemImg src={DELETE} alt="delete" />
-                    <DeleteSpan>삭제하기</DeleteSpan>
+                    <DeleteP>삭제하기</DeleteP>
                 </EditItemBox>
             </EditItemContainer>
         </EditModalContainer>
-    )
-}
+    );
+};
 
 export default EditModal;

@@ -4,9 +4,9 @@ import addLogo from "../../../assets/images/add/addLogo.png";
 
 const AddContainer = styled.div`
     width: 100%;
-    height: 5.2rem;
+    height: 2.6vw;
     background-color: ${(props) => (props.focused ? colors.mainColor : props.clicked ? colors.white : colors.mainColor)};
-    border: 1px solid ${(props) => (props.focused ? colors.textColor : props.clicked ? colors.textColor : "none")};
+    border: 0.05vw solid ${(props) => (props.focused ? colors.textColor : props.clicked ? colors.textColor : "none")};
     border-radius: 0.4vw;
     display: flex;
     justify-content: center;
@@ -21,13 +21,13 @@ const InnerContainer = styled.div`
 `;
 
 const AddImg = styled.img`
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 1.3vw;
+    height: 1.3vw;
     display: ${(props) => (props.clicked ? "none" : "block")};
 `;
 
 const AddP = styled.p`
-    font-size: 1.4rem;
+    font-size: 0.7vw;
     color: ${(props) => (props.focused ? colors.white : props.clicked ? colors.textColor : colors.white)};
     font-weight: 600;
 `;
