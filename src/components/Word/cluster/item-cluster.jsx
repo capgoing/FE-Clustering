@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import colors from "../../../styles/colors";
 import Main from "../../../assets/images/cluster/main.png";
 import Menu from "../../../assets/images/cluster/menu.png";
+import Edit from "../../../assets/images/cluster/edit.png";
+import Edit2 from "../../../assets/images/cluster/edit2.png";
 import EditModal from "./editModal";
 
 const ItemContainer = styled.div`
@@ -11,16 +13,16 @@ const ItemContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     position: relative;
-`
+`;
 
 const TextContainer = styled.div`
     display: flex;
     align-items: center;
     width: 80%;
-`
+`;
 
-const ItemP = styled.p`
-    font-size: 1.4rem;
+const ItemInput = styled.input`
+    font-size: 0.7vw;
     font-weight: 500;
     color: ${colors.black};
     max-width: 100%;
@@ -28,74 +30,79 @@ const ItemP = styled.p`
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
-`
+    border: none;
+    outline: none;
+    background: transparent;
+`;
+
+const ItemP = styled.p`
+    font-size: 0.7vw;
+    font-weight: 500;
+    color: ${colors.black};
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+`;
 
 const MainImg = styled.img`
-    width: 2.6rem;
-    height: 2.6rem;
-`
+    width: 1.3vw;
+    height: 1.3vw;
+`;
 
 const MenuContainer = styled.div`
     position: relative;
     cursor: pointer;
-`
+`;
 
 const ItemCluster = ({ id, title, onItemClick }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false); // Modal 표시 여부
-    const menuRef = useRef(null); // 메뉴 위치 참조
-    const [modalPosition, setModalPosition] = useState({ top: 320, left: 0 });
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [currentTitle, setCurrentTitle] = useState(title);
 
-    useEffect(() => {
-        console.log("초기 modalPosition:", modalPosition);
-    }, [modalPosition]); // modalPosition이 변경될 때마다 로그 출력
-
-    const handleClick = () => {
-        onItemClick(id);
-    };
-
-    const handleMenuClick = () => {
-        console.log("menu click");
-        if (menuRef.current) {
-            const rect = menuRef.current.getBoundingClientRect();
-            const newPosition = {
-                top: rect.bottom + window.scrollY,
-                left: rect.left + window.scrollX
-            };
-            console.log("newPosition: " + newPosition);
-    
-            setModalPosition(newPosition);
-            setTimeout(() => setIsModalOpen(true), 0); 
-        } else {
+    const handleToggleModal = () => {
+        if (!isEditing) {
             setIsModalOpen((prev) => !prev);
-            console.log("no");
         }
     };
 
-    useEffect(() => {
-        if (modalPosition.top !== 320 && modalPosition.left !== 0) {
-            setIsModalOpen(true);
-        }
-    }, [modalPosition]); // modalPosition이 변경될 때 실행
-    
-    
+    const handleModify = () => {
+        setIsEditing(true);
+        setIsModalOpen(false);
+    };
+
+    const handleChange = (e) => {
+        setCurrentTitle(e.target.value);
+    };
+
+    const handleBlur = () => {
+        setTimeout(() => {
+            if (currentTitle.trim() !== "") {
+                setIsEditing(false);
+                setIsModalOpen(false);
+            }
+        }, 100);
+    };
 
     return (
         <ItemContainer>
-            <TextContainer onClick={handleClick}>
-                <ItemP>{title}</ItemP>
-                <MainImg src={Main} alt="main" />
+            <TextContainer>
+                {isEditing ? (
+                    <ItemInput type="text" value={currentTitle} onChange={handleChange} onBlur={handleBlur} autoFocus />
+                ) : (
+                    <ItemP>{currentTitle}</ItemP>
+                )}
+                <MainImg src={Main} alt="main" style={{ display: isEditing ? "none" : "block" }} />
             </TextContainer>
 
-            <MenuContainer ref={menuRef} onClick={handleMenuClick}>
-                <MainImg src={Menu} alt="menu"/>
+            <MenuContainer onClick={handleToggleModal}>
+                <MainImg src={isEditing ? (currentTitle.trim() === "" ? Edit : Edit2) : Menu} alt="menu"/>
             </MenuContainer>
-            {/* {isModalOpen && <EditModal position={modalPosition} />} */}
             
-            {isModalOpen &&
-                <EditModal position={modalPosition} />
-            }
+            {isModalOpen && <EditModal onModify={handleModify} />}
         </ItemContainer>
-    )
-}
+    );
+};
 
 export default ItemCluster;

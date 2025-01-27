@@ -5,20 +5,20 @@ import radioBoxClick from "../../../assets/images/group/radioBox-click.png";
 
 const ItemContainer = styled.div`
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75vw;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5vw;
     cursor: pointer;
 `
 
 const RadioImg = styled.img`
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 1.3vw;
+    height: 1.3vw;
 `
 
 const ItemP = styled.p`
-    font-size: 1.4rem;
+    font-size: 0.7vw;
     color: ${({ $isSelected }) => ($isSelected ? colors.black : colors.textColor)};
     font-weight: 600;
     width: 80%;

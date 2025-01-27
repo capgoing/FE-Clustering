@@ -5,9 +5,10 @@ const navBarData = [
         "id": 1,
         "image1": images['wine1'],
         "image2": images['wine1-click'],
-        "name": "레드 와인",
+        "name": "초콜릿",
 
     },
+    /*
     {
         "id": 2,
         "image1": images['wine2'],
@@ -32,6 +33,7 @@ const navBarData = [
         "image2": images['wine5-click'],
         "name": "XXX 와인",
     }
+    */
 ]
 
 export default navBarData;

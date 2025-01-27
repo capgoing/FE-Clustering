@@ -4,13 +4,13 @@ import ItemCluster from "./item-cluster";
 const ListContainer = styled.div`
     width: 100%;
     height: 100%;
-    margin-top: 1.7rem;
+    margin-top: 0.85vw;
     overflow-y: auto;
 `;
 
 const ListCluster = ({ data, onItemClick }) => {
     const validData = Array.isArray(data) ? data : data ? [data] : [];
-    console.log(validData);
+    // console.log(validData);
 
     return (
         <ListContainer>

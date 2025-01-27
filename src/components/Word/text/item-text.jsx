@@ -6,7 +6,7 @@ const ItemContainer = styled.div`
 `
 
 const ItemP = styled.p`
-    font-size: 1.4rem;
+    font-size: 0.7vw;
     font-weight: 500;
     color: ${colors.black};
 `

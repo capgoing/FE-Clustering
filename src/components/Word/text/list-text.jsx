@@ -4,7 +4,7 @@ import ItemText from "./item-text";
 const ListContainer = styled.div`
     width: 100%;
     height: 100%;
-    margin: 0.9rem 0;
+    margin: 0.45vw 0;
     overflow-y: auto;
 `;
 

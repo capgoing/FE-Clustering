@@ -5,7 +5,7 @@ import colors from "../../../styles/colors";
 import ListGroup from "./list-group";
 
 const GroupP = styled.p`
-    font-size: 1.4rem;
+    font-size: 0.7vw;
     color: ${colors.black};
     font-weight: 600;
 `
@@ -15,8 +15,8 @@ const Group = ({ selectedId, onItemClick }) => {
     const item = navBarData.find((data) => data.id === parseInt(id));
 
     return (
-        <div className="wordContainer" style={{ height: "40%", padding: "1.7rem 2rem", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <GroupP>{item.name} 포도 품종</GroupP>
+        <div className="wordContainer" style={{ height: "40%", padding: "0.85vw 1vw", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <GroupP>{item.name} 표기 변형</GroupP>
 
             <ListGroup selectedId={selectedId} onItemClick={onItemClick} />
         </div>
