@@ -25,10 +25,7 @@ const ItemInput = styled.input`
     font-size: 0.7vw;
     font-weight: 500;
     color: ${colors.black};
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 100%;
     cursor: pointer;
     border: none;
     outline: none;
@@ -54,6 +51,8 @@ const MainImg = styled.img`
 const MenuContainer = styled.div`
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 `;
 
 const ItemCluster = ({ id, title, onItemClick }) => {
@@ -76,28 +75,31 @@ const ItemCluster = ({ id, title, onItemClick }) => {
         setCurrentTitle(e.target.value);
     };
 
-    const handleBlur = () => {
-        setTimeout(() => {
-            if (currentTitle.trim() !== "") {
-                setIsEditing(false);
-                setIsModalOpen(false);
-            }
-        }, 100);
+    const handleConfirmEdit = () => {
+        if (currentTitle.trim() !== "") {
+            setIsEditing(false);
+        }
     };
 
     return (
         <ItemContainer>
             <TextContainer>
                 {isEditing ? (
-                    <ItemInput type="text" value={currentTitle} onChange={handleChange} onBlur={handleBlur} autoFocus />
+                    <ItemInput type="text" value={currentTitle} onChange={handleChange} autoFocus />
                 ) : (
                     <ItemP>{currentTitle}</ItemP>
                 )}
                 <MainImg src={Main} alt="main" style={{ display: isEditing ? "none" : "block" }} />
             </TextContainer>
 
-            <MenuContainer onClick={handleToggleModal}>
-                <MainImg src={isEditing ? (currentTitle.trim() === "" ? Edit : Edit2) : Menu} alt="menu"/>
+            <MenuContainer>
+                {!isEditing ? (
+                    <MainImg src={Menu} alt="menu" onClick={handleToggleModal} />
+                ) : currentTitle.trim() !== "" ? (
+                    <MainImg src={Edit2} alt="edit-done" onClick={handleConfirmEdit} />
+                ) : (
+                    <MainImg src={Edit} alt="edit" />
+                )}
             </MenuContainer>
             
             {isModalOpen && <EditModal onModify={handleModify} />}
