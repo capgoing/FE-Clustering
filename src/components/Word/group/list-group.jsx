@@ -15,7 +15,7 @@ const ListP = styled.p`
     color: ${colors.black};
 `
 
-const ListGroup = ({ selectedId, onItemClick }) => {
+const ListGroup = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn }) => {
     const { data: users, loading, error } = useFetch("/posts");
 
     return (
@@ -32,6 +32,8 @@ const ListGroup = ({ selectedId, onItemClick }) => {
                         name={user.title}
                         isSelected={user.id === selectedId}
                         onClick={onItemClick}
+                        clickAddBtn={clickAddBtn}
+                        setClickAddBtn={setClickAddBtn}
                     />
                 ))
             )}

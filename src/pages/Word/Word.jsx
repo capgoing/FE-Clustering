@@ -51,7 +51,7 @@ const Word = () => {
     return (
         <div className="outletContainer">
             <WordContainer>
-                <Group selectedId={selectedId} onItemClick={handleItemClick} />
+                <Group selectedId={selectedId} onItemClick={handleItemClick} clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn}/>
                 <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} clickAddBtn={clickAddBtn} setIsFocus={setIsFocus} isFocus={isFocus}/>
                 <Add clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn} isFocus={isFocus}/>
             </WordContainer>

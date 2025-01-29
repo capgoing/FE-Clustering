@@ -27,9 +27,13 @@ const ItemP = styled.p`
     text-overflow: ellipsis;
 `
 
-const ItemGroup = ({ id, name, isSelected, onClick }) => {
+const ItemGroup = ({ id, name, isSelected, onClick, clickAddBtn, setClickAddBtn }) => {
+    const handleClick = () => {
+        onClick(id);
+        if(clickAddBtn) setClickAddBtn(!clickAddBtn); // 추가하기 버튼이 눌러져있는 경우에만 실행
+    }
     return (
-        <ItemContainer onClick={() => onClick(id)}>
+        <ItemContainer onClick={handleClick}>
             <RadioImg src={isSelected ? radioBoxClick : radioBox} alt="radio" />
             <ItemP $isSelected={isSelected}>{name}</ItemP>
         </ItemContainer>

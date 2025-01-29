@@ -10,7 +10,7 @@ const GroupP = styled.p`
     font-weight: 600;
 `
 
-const Group = ({ selectedId, onItemClick }) => {
+const Group = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn}) => {
     const { id } = useParams();
     const item = navBarData.find((data) => data.id === parseInt(id));
 
@@ -18,7 +18,7 @@ const Group = ({ selectedId, onItemClick }) => {
         <div className="wordContainer" style={{ height: "40%", padding: "0.85vw 1vw", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
             <GroupP>{item.name} 표기 변형</GroupP>
 
-            <ListGroup selectedId={selectedId} onItemClick={onItemClick} />
+            <ListGroup selectedId={selectedId} onItemClick={onItemClick} clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn}/>
         </div>
     );
 };
