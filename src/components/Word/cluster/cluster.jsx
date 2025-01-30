@@ -59,6 +59,10 @@ const Cluster = ({ selectedId, onItemSelect, clickAddBtn, setIsFocus }) => {
         onItemSelect(id);
     };
 
+    const handleChange = (e) => {
+        setIsFocus(e.target.value.trim() !== "");
+    };
+    
     const handleBlur = (text) => {
         if (text.trim() === "") {
             setIsFocus(false);
@@ -78,7 +82,10 @@ const Cluster = ({ selectedId, onItemSelect, clickAddBtn, setIsFocus }) => {
             </TopPContainer>
             {clickAddBtn ? (
                 <InputNewWordBox>
-                    <InputNewWord placeholder="새 어휘를 입력해주세요." onFocus={() => setIsFocus(true)} onBlur={(e) => handleBlur(e.target.value)}/>
+                    <InputNewWord 
+                    placeholder="새 어휘를 입력해주세요." 
+                    onChange={handleChange} // 입력값 변경 시 focus 상태 업데이트
+                    onBlur={(e) => handleBlur(e.target.value)}/>
                 </InputNewWordBox>
             ) : (
                 <>

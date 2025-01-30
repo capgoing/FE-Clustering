@@ -12,6 +12,8 @@ const AddContainer = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    pointer-events: ${(props) => (props.focused || !props.clicked ? "auto" : "none")}; // 배경이 흰색일 때 클릭 방지
+
 `;
 
 const InnerContainer = styled.div`
