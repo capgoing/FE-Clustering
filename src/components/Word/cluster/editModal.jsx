@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../styles/colors";
+import { API } from "../../../apis/axios";
 import MODIFY from '../../../assets/images/cluster/modify.png';
 import DELETE from '../../../assets/images/cluster/delete.png';
 
@@ -49,7 +50,21 @@ const EditItemImg = styled.img`
     height: auto;
 `;
 
-const EditModal = ({ onModify }) => {
+const EditModal = ({ id, onModify }) => {
+    console.log("모달", id);
+
+    const handleDelete = async () => {
+        try {
+            const response = await API.delete(`/api/words/${id}`); 
+            
+            // console.log("삭제", response);
+            alert("삭제가 완료되었습니다.");
+            window.location.reload();
+        } catch (error) {
+            console.error("Error", error);
+        }
+    };
+
     return (
         <EditModalContainer>
             <EditItemContainer>
@@ -59,7 +74,7 @@ const EditModal = ({ onModify }) => {
                 </EditItemBox>
                 <EditItemBox>
                     <EditItemImg src={DELETE} alt="delete" />
-                    <DeleteP>삭제하기</DeleteP>
+                    <DeleteP onClick={() => handleDelete(id)}>삭제하기</DeleteP>
                 </EditItemBox>
             </EditItemContainer>
         </EditModalContainer>

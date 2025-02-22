@@ -53,7 +53,7 @@ const Word = () => {
             <WordContainer>
                 <Group selectedId={selectedId} onItemClick={handleItemClick} clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn}/>
                 <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} clickAddBtn={clickAddBtn} setIsFocus={setIsFocus} isFocus={isFocus}/>
-                <Add clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn} isFocus={isFocus}/>
+                <Add clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn} isFocus={isFocus} />
             </WordContainer>
 
             <WordContainer style={{width: "66%"}}>
