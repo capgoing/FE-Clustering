@@ -3,6 +3,7 @@ import colors from "../../../styles/colors";
 import useFetch from "../../../hooks/useFetch";
 import Main from "../../../assets/images/cluster/main.png";
 import ListCluster from "./list-cluster";
+import { useState, useEffect } from "react";
 
 const TopPContainer = styled.div`
     width: 100%;
@@ -53,9 +54,22 @@ const InputNewWord = styled.input`
 `;
 
 const Cluster = ({ selectedId, onItemSelect, clickAddBtn, setIsFocus }) => {
-    const { data, loading, error } = useFetch(selectedId ? `/posts/${selectedId}` : null);
+    const [wordsData, setWordsData] = useState([]);
+    const { data, loading, error } = useFetch(selectedId ? `/api/words?clusterId=${selectedId}` : null);
+
+    useEffect(() => {
+        if (data?.data?.words) {
+            setWordsData(data.data.words);
+        } else {
+            setWordsData([]);
+        }
+    }, [data, selectedId]);
+
+    const representativeWord = wordsData.find((word) => word.isRepresent);
+
 
     const handleItemClick = (id) => {
+        console.log("id", id);
         onItemSelect(id);
     };
 
@@ -75,9 +89,9 @@ const Cluster = ({ selectedId, onItemSelect, clickAddBtn, setIsFocus }) => {
                 <ClusterP>대표어휘</ClusterP>
                 <MainContainer>
                     <ClusterP style={{ color: colors.black, maxWidth: "90%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                        {loading || error ? "" : data?.title || ""}
+                        {loading || error ? "" : representativeWord?.compositionWord || ""}
                     </ClusterP>
-                    {!loading && !error && data?.title && <MainImg src={Main} alt="main" />}
+                    {!loading && !error && representativeWord && <MainImg src={Main} alt="main" />}
                 </MainContainer>
             </TopPContainer>
             {clickAddBtn ? (
@@ -90,7 +104,7 @@ const Cluster = ({ selectedId, onItemSelect, clickAddBtn, setIsFocus }) => {
             ) : (
                 <>
                     <ClusterP>구성어휘</ClusterP>
-                    <ListCluster data={data} onItemClick={handleItemClick} />
+                    <ListCluster data={wordsData} onItemClick={handleItemClick} />
                 </>
             )}
         </div>

@@ -1,4 +1,5 @@
 import useFetch from "../../../hooks/useFetch";
+import { useState, useEffect} from "react";
 import styled from "styled-components";
 import colors from "../../../styles/colors";
 import ListText from "./list-text";
@@ -17,13 +18,24 @@ const TextBar = styled.div`
 `;
 
 const Text = ({ selectedItemId }) => {
-    const { data, loading, error } = useFetch(selectedItemId ? `/posts/${selectedItemId}` : null);
+    const { data, loading, error } = useFetch(selectedItemId ? `/api/sentence/${selectedItemId}` : null);
+    const [textData, setTextData] = useState([]);
+
+    useEffect(() => {
+        if (data?.data) {
+            setTextData(data.data);
+        } else {
+            setTextData([]);
+        }
+    }, [data, selectedItemId]);
+
+    // console.log(textData);
 
     return (
         <div className="wordContainer" style={{ height: "49%", padding: "0.85vw 1vw", display: "flex", flexDirection: "column" }}>
             <TextP>선택된 단어가 사용된 문장 분석</TextP>
             <TextBar />
-            {selectedItemId && !loading && !error && <ListText data={data} />}
+            {selectedItemId && !loading && !error && <ListText data={textData} />}
         </div>
     );
 };

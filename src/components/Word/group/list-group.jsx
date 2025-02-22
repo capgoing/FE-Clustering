@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useFetch from "../../../hooks/useFetch";
 import ItemGroup from "./item-group";
 import colors from "../../../styles/colors";
+import { useEffect, useState } from "react";
 
 const ListContainer = styled.div`
     width: 100%;
@@ -16,7 +17,16 @@ const ListP = styled.p`
 `
 
 const ListGroup = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn }) => {
-    const { data: users, loading, error } = useFetch("/posts");
+    const { data, loading, error } = useFetch("/api/cluster");
+    const [groupData, setGroupData] = useState([]);
+
+    useEffect(() => {
+        if (data?.data?.cluster) {
+            setGroupData(data.data.cluster);
+        }
+    }, [data]);
+
+    // console.log(data);
 
     return (
         <ListContainer>
@@ -25,12 +35,12 @@ const ListGroup = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn }) => 
             ) : error ? (
                 <ListP>Error</ListP>
             ) : (
-                users?.map((user) => (
+                groupData.map((item) => (
                     <ItemGroup
-                        key={user.id}
-                        id={user.id}
-                        name={user.title}
-                        isSelected={user.id === selectedId}
+                        key={item.id}
+                        id={item.clusterId}
+                        name={item.representWord}
+                        isSelected={item.clusterId === selectedId}
                         onClick={onItemClick}
                         clickAddBtn={clickAddBtn}
                         setClickAddBtn={setClickAddBtn}

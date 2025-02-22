@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API } from "../../../apis/axios";
 import styled from "styled-components";
 import colors from "../../../styles/colors";
 import Main from "../../../assets/images/cluster/main.png";
@@ -30,6 +31,7 @@ const ItemInput = styled.input`
     border: none;
     outline: none;
     background: transparent;
+    padding-left: 0;
 `;
 
 const ItemP = styled.p`
@@ -55,7 +57,7 @@ const MenuContainer = styled.div`
     align-items: center;
 `;
 
-const ItemCluster = ({ id, title, onItemClick }) => {
+const ItemCluster = ({ id, title, main, onItemClick }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentTitle, setCurrentTitle] = useState(title);
@@ -75,21 +77,35 @@ const ItemCluster = ({ id, title, onItemClick }) => {
         setCurrentTitle(e.target.value);
     };
 
-    const handleConfirmEdit = () => {
-        if (currentTitle.trim() !== "") {
+    const handleConfirmEdit = async () => {
+        if (currentTitle.trim() === "") {
+            alert("수정할 어휘를 입력해주세요.");
+            return;
+        }
+
+        try {
+            const response = await API.patch(`/api/words/${id}`, {
+                word: currentTitle.trim()
+            });
+
+            console.log("단어 수정 성공:", response);
+            alert("단어가 수정되었습니다.");
             setIsEditing(false);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error", error);
         }
     };
 
     return (
-        <ItemContainer>
+        <ItemContainer onClick={() => onItemClick(id)}>
             <TextContainer>
                 {isEditing ? (
                     <ItemInput type="text" value={currentTitle} onChange={handleChange} autoFocus />
                 ) : (
                     <ItemP>{currentTitle}</ItemP>
                 )}
-                <MainImg src={Main} alt="main" style={{ display: isEditing ? "none" : "block" }} />
+                {main && <MainImg src={Main} alt="main" style={{ display: isEditing ? "none" : "block" }} />}
             </TextContainer>
 
             <MenuContainer>
@@ -102,7 +118,7 @@ const ItemCluster = ({ id, title, onItemClick }) => {
                 )}
             </MenuContainer>
             
-            {isModalOpen && <EditModal onModify={handleModify} />}
+            {isModalOpen && <EditModal onModify={handleModify} id={id} />}
         </ItemContainer>
     );
 };

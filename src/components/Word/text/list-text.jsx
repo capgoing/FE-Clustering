@@ -5,19 +5,23 @@ const ListContainer = styled.div`
     width: 100%;
     height: 100%;
     margin: 0.45vw 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
     overflow-y: auto;
 `;
 
 const ListText = ({ data }) => {
-    // console.log("전달받은 데이터:", data);
     const dataList = data ? (Array.isArray(data) ? data : [data]) : [];
+
+    // console.log(data);
 
     return (
         <ListContainer>
             {dataList.map((item, index) => (
                 <ItemText 
                     key={index} 
-                    title={item.title|| ""} 
+                    title={item|| ""} 
                 />
             ))}
         </ListContainer>

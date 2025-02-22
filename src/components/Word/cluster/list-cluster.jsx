@@ -18,8 +18,9 @@ const ListCluster = ({ data, onItemClick }) => {
                 validData.map((item, index) => (
                     <ItemCluster 
                         key={index}
-                        id={item.id}
-                        title={item?.title || ''}
+                        id={item.wordId}
+                        title={item.compositionWord|| ''}
+                        main={item.isRepresent}
                         onItemClick={onItemClick}
                     />
                 ))
