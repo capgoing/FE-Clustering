@@ -62,7 +62,12 @@ const ItemCluster = ({ id, title, main, onItemClick, selectedItemId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentTitle, setCurrentTitle] = useState(title);
-  const [clikedWord, setClickedWord] = useState(id);
+
+  useEffect(() => {
+    if (selectedItemId !== id) {
+      setIsModalOpen(false);
+    }
+  }, [selectedItemId, id]);
 
   const handleToggleModal = (e) => {
     e.stopPropagation(); // 부모 클릭 이벤트 방지
@@ -71,7 +76,7 @@ const ItemCluster = ({ id, title, main, onItemClick, selectedItemId }) => {
         setIsModalOpen((prev) => !prev); // 같은 아이템 클릭 시 모달 토글
       } else {
         onItemClick(id); // 다른 아이템 클릭 시 선택 변경
-        setIsModalOpen(true); // 새로운 아이템을 선택할 때 모달 열기
+        setIsModalOpen((prev) => !prev); // 새로운 아이템을 선택할 때 모달 열기
       }
     }
   };
