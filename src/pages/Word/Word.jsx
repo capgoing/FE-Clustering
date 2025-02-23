@@ -8,60 +8,81 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const WordContainer = styled.div`
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 const Word = () => {
-    const { id } = useParams();
-    const [selectedId, setSelectedId] = useState(null);
-    const [selectedItemId, setSelectedItemId] = useState(null);
-    const [clickAddBtn, setClickAddBtn] = useState(false); // 새 어휘추가 버튼 클릭 상태 저장
-    const [isFocus, setIsFocus] = useState(false);
+  const { id } = useParams();
+  const [selectedId, setSelectedId] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [clickAddBtn, setClickAddBtn] = useState(false); // 새 어휘추가 버튼 클릭 상태 저장
+  const [isFocus, setIsFocus] = useState(false);
+  const [newWord, setNewWord] = useState("");
 
-    const handleClusterItemClick = (id) => {
-        setSelectedItemId(id);
-    };
+  const handleClusterItemClick = (id) => {
+    setSelectedItemId(id);
+  };
 
-    const handleItemClick = (id) => {
-        setSelectedId(id);
-        console.log("선택된 항목: ", id);
-    };
+  const handleItemClick = (id) => {
+    setSelectedId(id);
+    console.log("선택된 항목: ", id);
+  };
 
-    useEffect(() => {
-        setSelectedItemId(null);
-    }, [selectedId]);
+  useEffect(() => {
+    setSelectedItemId(null);
+  }, [selectedId]);
 
-    useEffect(() => {
-        setSelectedId(null);
-        setSelectedItemId(null);
-    }, [id]); 
+  useEffect(() => {
+    setSelectedId(null);
+    setSelectedItemId(null);
+  }, [id]);
 
-    useEffect(() => {
-        // console.log("새 어휘추가버튼 클릭");
-    },[clickAddBtn]);
+  useEffect(() => {
+    // console.log("새 어휘추가버튼 클릭");
+  }, [clickAddBtn]);
 
-    useEffect(() => {
-        // console.log("포커싱 " + isFocus);
-    },[isFocus]);
+  useEffect(() => {
+    console.log("포커싱 " + isFocus);
+  }, [isFocus]);
 
-    return (
-        <div className="outletContainer">
-            <WordContainer>
-                <Group selectedId={selectedId} onItemClick={handleItemClick} clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn}/>
-                <Cluster selectedId={selectedId} onItemSelect={handleClusterItemClick} clickAddBtn={clickAddBtn} setIsFocus={setIsFocus} isFocus={isFocus}/>
-                <Add clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn} isFocus={isFocus} />
-            </WordContainer>
+  return (
+    <div className="outletContainer">
+      <WordContainer>
+        <Group
+          selectedId={selectedId}
+          onItemClick={handleItemClick}
+          clickAddBtn={clickAddBtn}
+          setClickAddBtn={setClickAddBtn}
+        />
+        <Cluster
+          selectedId={selectedId}
+          selectedItemId={selectedItemId}
+          onItemSelect={handleClusterItemClick}
+          clickAddBtn={clickAddBtn}
+          setIsFocus={setIsFocus}
+          isFocus={isFocus}
+          setNewWord={setNewWord}
+        />
+        <Add
+          selectedId={selectedId}
+          clickAddBtn={clickAddBtn}
+          setClickAddBtn={setClickAddBtn}
+          isFocus={isFocus}
+          newWord={newWord}
+          setNewWord={setNewWord}
+        />
+      </WordContainer>
 
-            <WordContainer style={{width: "66%"}}>
-                <Result />
-                <Text selectedItemId={selectedItemId} />
-            </WordContainer>
-        </div>
-    )
-}
+      <WordContainer style={{ width: "66%" }}>
+        <Result />
+        <Text selectedItemId={selectedItemId} />
+      </WordContainer>
+    </div>
+  );
+};
 
 export default Word;
