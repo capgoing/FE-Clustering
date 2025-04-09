@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import colors from './colors';
+import { createGlobalStyle } from "styled-components";
+import colors from "./colors";
 
 const GlobalStyle = createGlobalStyle`
     :root {
@@ -81,7 +81,12 @@ const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
         font-size: 62.5%;
     }
-    
+    // TV 등 큰 화면 대응
+    @media screen and (min-width: 1920px) {
+        html{
+            font-size: 78%;
+        }
+    }
     @media screen and (max-width:1799px) {
         /* 데스크탑 */
         html{

@@ -5,22 +5,36 @@ import colors from "../../../styles/colors";
 import ListGroup from "./list-group";
 
 const GroupP = styled.p`
-    font-size: 0.7vw;
-    color: ${colors.black};
-    font-weight: 600;
-`
+  font-size: 2rem;
+  color: ${colors.black};
+  font-weight: 600;
+`;
 
-const Group = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn}) => {
-    const { id } = useParams();
-    const item = navBarData.find((data) => data.id === parseInt(id));
+const Group = ({ selectedId, onItemClick, clickAddBtn, setClickAddBtn }) => {
+  const { id } = useParams();
+  const item = navBarData.find((data) => data.id === parseInt(id));
 
-    return (
-        <div className="wordContainer" style={{ height: "40%", padding: "0.85vw 1vw", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            <GroupP>{item.name} 표기 변형</GroupP>
+  return (
+    <div
+      className="wordContainer"
+      style={{
+        height: "40%",
+        padding: "0.85vw 1vw",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <GroupP>{item.name} 표기 변형</GroupP>
 
-            <ListGroup selectedId={selectedId} onItemClick={onItemClick} clickAddBtn={clickAddBtn} setClickAddBtn={setClickAddBtn}/>
-        </div>
-    );
+      <ListGroup
+        selectedId={selectedId}
+        onItemClick={onItemClick}
+        clickAddBtn={clickAddBtn}
+        setClickAddBtn={setClickAddBtn}
+      />
+    </div>
+  );
 };
 
 export default Group;

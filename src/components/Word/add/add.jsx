@@ -5,7 +5,7 @@ import { API } from "../../../apis/axios";
 
 const AddContainer = styled.div`
   width: 100%;
-  height: 2.6vw;
+  height: 5rem;
   background-color: ${(props) =>
     props.focused
       ? colors.mainColor
@@ -19,7 +19,7 @@ const AddContainer = styled.div`
         : props.clicked
         ? colors.textColor
         : "none"};
-  border-radius: 0.4vw;
+  border-radius: 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +43,7 @@ const AddImg = styled.img`
 `;
 
 const AddP = styled.p`
-  font-size: 0.7vw;
+  font-size: 1.5rem;
   color: ${(props) =>
     props.focused
       ? colors.white
