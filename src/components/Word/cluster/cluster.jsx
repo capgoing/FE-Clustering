@@ -9,11 +9,11 @@ const TopPContainer = styled.div`
   width: 100%;
   border-bottom: 0.044vw solid ${colors.barColor};
   padding-bottom: 0.85vw;
-  margin-bottom: 0.45vw;
+  margin-bottom: 1rem;
 `;
 
 const ClusterP = styled.p`
-  font-size: 0.75vw;
+  font-size: 2rem;
   font-weight: 600;
   color: ${colors.mainColor};
 `;
@@ -131,7 +131,7 @@ const Cluster = ({
         </InputNewWordBox>
       ) : (
         <>
-          <ClusterP>구성어휘</ClusterP>
+          <ClusterP>유의어</ClusterP>
           <ListCluster
             data={wordsData}
             onItemClick={handleItemClick}

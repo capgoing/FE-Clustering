@@ -35,10 +35,10 @@ const ItemInput = styled.input`
 `;
 
 const ItemP = styled.p`
-  font-size: 0.7vw;
+  font-size: 1.8rem;
   font-weight: 500;
-  color: ${({ main, selected }) =>
-    selected ? "blue" : main ? colors.black : colors.textColor};
+  color: ${({ $main, selected }) =>
+    selected ? "blue" : $main ? colors.black : colors.textColor};
   max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -122,7 +122,7 @@ const ItemCluster = ({ id, title, main, onItemClick, selectedItemId }) => {
             autoFocus
           />
         ) : (
-          <ItemP main={main} selected={selectedItemId === id}>
+          <ItemP $main={main} selected={selectedItemId === id}>
             {currentTitle}
           </ItemP>
         )}
