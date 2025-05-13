@@ -10,12 +10,11 @@ const ImageContainer = styled.div`
 
 const LegendContainer = styled.div`
   width: 100%;
-  padding: 1vw;
   display: flex;
   flex-wrap: wrap;
   gap: 1vw;
-  border-top: 0.05vw solid #e5e7eb;
-  font-size: 1vw;
+  font-size: 0.8vw;
+  padding: 1vw;
 `;
 
 const LegendItem = styled.div`
@@ -25,8 +24,8 @@ const LegendItem = styled.div`
 `;
 
 const ColorCircle = styled.div`
-  width: 1vw;
-  height: 1vw;
+  width: 0.5vw;
+  height: 0.5vw;
   border-radius: 50%;
   background-color: ${({ color }) => color};
 `;
@@ -74,7 +73,7 @@ const Result = () => {
           preserveAspectRatio="xMidYMid meet"
           style={{
             width: "100%",
-            height: "100%",
+            height: "80%",
             background: colors.white,
             borderRadius: "0.4vw",
           }}
@@ -88,16 +87,16 @@ const Result = () => {
             </g>
           ))}
         </svg>
-      </ImageContainer>
 
-      <LegendContainer>
-        {clusterList.map((cluster) => (
-          <LegendItem key={cluster.clusterId}>
-            <ColorCircle color={getClusterColor(cluster.clusterId)} />
-            {cluster.representWord}
-          </LegendItem>
-        ))}
-      </LegendContainer>
+        <LegendContainer>
+          {clusterList.map((cluster) => (
+            <LegendItem key={cluster.clusterId}>
+              <ColorCircle color={getClusterColor(cluster.clusterId)} />
+              {cluster.representWord}
+            </LegendItem>
+          ))}
+        </LegendContainer>
+      </ImageContainer>
     </>
   );
 };

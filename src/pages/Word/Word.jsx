@@ -77,7 +77,7 @@ const Word = () => {
         />
       </WordContainer>
 
-      <WordContainer style={{ width: "66%", height: "100%", display: "flex", flexDirection: "column", gap: "2vw" }}>
+      <WordContainer style={{ width: "66%" }}>
         <Result />
         <Text selectedItemId={selectedItemId} />
       </WordContainer>
