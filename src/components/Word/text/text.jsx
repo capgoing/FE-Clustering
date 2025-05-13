@@ -44,7 +44,7 @@ const Text = ({ selectedItemId }) => {
     <div
       className="wordContainer"
       style={{
-        height: "49%",
+        height: "40%",
         padding: "0.85vw 1vw",
         display: "flex",
         flexDirection: "column",
